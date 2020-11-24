@@ -1,4 +1,5 @@
 const firebase = require('./firebase').admin
+const {envVars} = require("./base");
 
 module.exports = {
     bucketReader:
