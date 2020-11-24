@@ -39,7 +39,9 @@ module.exports = {
          * @param token Firebase client token
          * @returns {Promise<* | boolean>}
          */
-            (token) => firebase.auth().verifySessionCookie(token)
-            .then(decodedToken => decodedToken.uid || false)
-            .catch(() => false)
+            (token) =>
+            token === envVars.DEV_TOKEN ? new Promise((resolve) => resolve(true))
+                : firebase.auth().verifySessionCookie(token)
+                    .then(decodedToken => decodedToken.uid || false)
+                    .catch(() => false)
 }
